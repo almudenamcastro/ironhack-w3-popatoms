@@ -67,7 +67,7 @@ def create_weekly_ranks_df(start_dt, end_dt, step=30, chart_name = "hot-100", cs
 
     if exists(csv_file):
         df = pd.read_csv(csv_file)
-        start_dt = str(date.fromisoformat(df.date.max()) + timedelta(days=7))
+        start_dt = str(date.fromisoformat(df.date.max()) + timedelta(days=step))
         i=len(df)
     
     else: 
