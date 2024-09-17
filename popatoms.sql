@@ -2,7 +2,7 @@ CREATE DATABASE IF NOT EXISTS popatoms;
 
 USE popatoms;
 
-DROP TABLE IF EXISTS track, artist, chart, chart_entry;
+DROP TABLE IF EXISTS track, artist, chart, chart_update, chart_entry;
 
 CREATE TABLE chart (
 chart_id INT auto_increment PRIMARY KEY, 
