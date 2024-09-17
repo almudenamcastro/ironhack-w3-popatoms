@@ -2,22 +2,22 @@ CREATE DATABASE IF NOT EXISTS popatoms;
 
 USE popatoms;
 
-DROP TABLE IF EXISTS track, artist, chart, chart_update;
+DROP TABLE IF EXISTS track, artist, chart, chart_entry;
 
 CREATE TABLE chart (
-chart_id INT auto_increment primary key, 
+chart_id INT auto_increment PRIMARY KEY, 
 name VARCHAR(50), 
 description VARCHAR(50), 
 country VARCHAR(50)
 );
 
 CREATE TABLE artist (
-artist_id INT auto_increment primary key, 
+artist_id INT auto_increment PRIMARY KEY, 
 name VARCHAR(50)
 );
 
 CREATE TABLE track (
-track_id INT auto_increment primary key, 
+track_id INT auto_increment PRIMARY KEY, 
 title VARCHAR(50),
 album VARCHAR(50),
 title_spotify VARCHAR(50),
@@ -43,7 +43,7 @@ tempo FLOAT,
 duration FLOAT,
 track_key FLOAT,
 track_mode FLOAT,
-foreign key(artist_id) references artist(artist_id)
+FOREIGN KEY(artist_id) references artist(artist_id)
 );
 
 CREATE TABLE chart_entry (
@@ -51,4 +51,5 @@ chart_id INT,
 entry_date DATE,
 rank_nr INT NOT NULL,
 track_id INT
+
 )
