@@ -18,7 +18,7 @@ artist VARCHAR(100)
 );
 
 CREATE TABLE track (
-track_id INT PRIMARY KEY, 
+track_id INT auto_increment PRIMARY KEY, 
 sp_id VARCHAR(50),
 title VARCHAR(300),
 album VARCHAR(300),
