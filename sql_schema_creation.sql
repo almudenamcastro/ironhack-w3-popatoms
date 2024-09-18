@@ -56,6 +56,7 @@ FOREIGN KEY(chart_id) references chart(chart_id)
 );
 
 CREATE TABLE chart_entry (
+entry_id INT auto_increment primary key,
 update_id VARCHAR(50),
 rank_nr TINYINT NOT NULL,
 track_id INT NOT NULL,
