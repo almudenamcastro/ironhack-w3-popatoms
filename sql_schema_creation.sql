@@ -47,3 +47,18 @@ track_key FLOAT,
 track_mode FLOAT,
 FOREIGN KEY(artist_id) references artist(artist_id)
 );
+
+CREATE TABLE chart_update (
+update_id VARCHAR(50) PRIMARY KEY,
+chart_id INT,
+update_date DATE,
+FOREIGN KEY(chart_id) references chart(chart_id)
+);
+
+CREATE TABLE chart_entry (
+update_id VARCHAR(50),
+rank_nr TINYINT NOT NULL,
+track_id INT NOT NULL,
+FOREIGN KEY(update_id) references chart_update(update_id),
+FOREIGN KEY(track_id) references track(track_id)
+);
