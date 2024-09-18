@@ -14,7 +14,7 @@ frequency VARCHAR(20)
 
 CREATE TABLE artist (
 artist_id INT auto_increment PRIMARY KEY, 
-name VARCHAR(50)
+artist VARCHAR(100)
 );
 
 CREATE TABLE track (
@@ -49,23 +49,18 @@ FOREIGN KEY(artist_id) references artist(artist_id)
 );
 
 CREATE TABLE chart_update (
-update_id INT PRIMARY KEY auto_increment,
+update_id VARCHAR(50) PRIMARY KEY,
 chart_id INT,
 update_date DATE,
 FOREIGN KEY(chart_id) references chart(chart_id)
 );
 
 CREATE TABLE chart_entry (
-update_id INT,
+update_id VARCHAR(50),
 rank_nr TINYINT NOT NULL,
 track_id INT NOT NULL,
 FOREIGN KEY(update_id) references chart_update(update_id),
 FOREIGN KEY(track_id) references track(track_id)
 );
-
--- Add the Chart info: 
-INSERT INTO chart (name, description, country, frequency)
-VALUES ('hot 100',	'The week’s most popular current songs across all genres, ranked by streaming activity from digital music sources tracked by luminate, radio airplay audience impressions as measured by luminate and sales data as compiled by luminate.', 'USA', 'week');
-
 
 
