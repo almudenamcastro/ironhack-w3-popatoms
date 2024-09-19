@@ -47,8 +47,7 @@ ORDER BY
 -- aleatorias de los años en que hay chart   
 
 DROP TEMPORARY TABLE IF EXISTS random_titles;
--- Crear la temporary table con el title solo (esto puede estar mejor hecho 
--- para no coger canciones que no tengan weeks en el chart)
+-- Crear la temporary table con el title solo y con valor de weeks
 CREATE TEMPORARY TABLE random_titles AS
 SELECT 
     t.title
@@ -61,7 +60,7 @@ JOIN
 JOIN 
     chart c ON cu.chart_id = c.chart_id
 WHERE 
-    cu.update_date BETWEEN '1959-01-01' AND '1967-12-31'
+    t.weeks IS NOT NULL
 ORDER BY 
     RAND()
 LIMIT 25;
