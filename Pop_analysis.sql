@@ -70,7 +70,7 @@ LIMIT 25;
 -- a pesar de ser valores todos iguales
 SELECT 
     t.title, 
-    MAX(c.name) AS chart_name,  -- Usar MAX() u otra función de agregación
+    MAX(c.name) AS chart_name,  
     MAX(t.weeks) AS weeks,
     MAX(t.track_id) AS track_id,
     MAX(t.energy) AS energy,
