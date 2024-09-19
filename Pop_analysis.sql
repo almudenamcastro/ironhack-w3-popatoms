@@ -43,11 +43,10 @@ GROUP BY
 ORDER BY 
     lustrum;
     
--- Borrar si existe una lista de 25 canciones 
--- aleatorias de los años en que hay chart   
-
+-- Borrar si existe la lista temporal de 25 canciones 
 DROP TEMPORARY TABLE IF EXISTS random_titles;
--- Crear la temporary table con el title solo y con valor de weeks
+-- Crear la temporary table con el title solo (esto puede estar mejor hecho 
+-- para no coger canciones que no tengan weeks en el chart)
 CREATE TEMPORARY TABLE random_titles AS
 SELECT 
     t.title
@@ -60,9 +59,9 @@ JOIN
 JOIN 
     chart c ON cu.chart_id = c.chart_id
 WHERE 
-    t.weeks IS NOT NULL
+    t.weeks is not null
 ORDER BY 
-    RAND()
+	RAND()
 LIMIT 25;
 
 -- Aquí sacamos toda esa info, y más si queremos, 
@@ -70,7 +69,7 @@ LIMIT 25;
 -- a pesar de ser valores todos iguales
 SELECT 
     t.title, 
-    MAX(c.name) AS chart_name,  
+    MAX(c.name) AS chart_name,  -- Usar MAX() u otra función de agregación
     MAX(t.weeks) AS weeks,
     MAX(t.track_id) AS track_id,
     MAX(t.energy) AS energy,
@@ -92,3 +91,14 @@ GROUP BY
     t.title
 ORDER BY 
     t.title;
+
+-- Mirando si los títulos solo llegan hasta la L 
+-- porque no sé si el random está funcionando bien
+
+SELECT DISTINCT LEFT(t.title, 1) AS first_letter
+FROM track t
+JOIN chart_entry ce ON t.track_id = ce.track_id
+JOIN chart_update cu ON ce.update_id = cu.update_id
+JOIN chart c ON cu.chart_id = c.chart_id
+WHERE t.weeks is not null
+ORDER BY first_letter;
