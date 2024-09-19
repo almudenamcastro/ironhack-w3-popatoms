@@ -52,12 +52,6 @@ SELECT
     t.title
 FROM 
     track t
-JOIN 
-    chart_entry ce ON t.track_id = ce.track_id
-JOIN 
-    chart_update cu ON ce.update_id = cu.update_id
-JOIN 
-    chart c ON cu.chart_id = c.chart_id
 WHERE 
     t.weeks is not null
 ORDER BY 
@@ -69,7 +63,7 @@ LIMIT 25;
 -- a pesar de ser valores todos iguales
 SELECT 
     t.title, 
-    MAX(c.name) AS chart_name, 
+    MAX(c.name) AS chart_name,  -- Usar MAX() u otra función de agregación
     MAX(t.weeks) AS weeks,
     MAX(t.track_id) AS track_id,
     MAX(t.energy) AS energy,
